@@ -11,10 +11,10 @@
 .grams{
 	font: 1.6em bold;
 	color: limegreen;
-	text-align: right;
+	text-align: center;
 }
 h1 {
-	text-align: right;
+	text-align: center;
 }
 /* element rangeUI */
 input[type=range] {
