@@ -19,7 +19,7 @@
     <div class="row">    
       <div class="col-md-offset-2 col-md-3">
         <label class="control-label" for="company">Wybierz firmę która dostarcza Ci prąd</label> 
-        <select id="company" class="form-control" onchange="ChangeCompanyList()">
+        <select id="company" class="form-control" onchange="changeCompanyList()">
           <option value="">Wybierz swojego sprzedawcę</option>
           <option value="ENEA">ENEA</option>
           <option value="ENERGA">ENERGA</option>
@@ -30,7 +30,7 @@
       </div>     
       <div class="col-md-3">
         <label class="control-label" for="enTaryfa">Wybierz taryfę</label>         
-        <select id="enTaryfa" class="form-control" onchange="ChangeUsageBar()">
+        <select id="enTaryfa" class="form-control" onchange="changeUsageBar()">
           <option selected="selected">Wybierz taryfę</option> 
         </select>
       </div>
@@ -46,24 +46,27 @@
         <div class="col-md-offset-2 col-md-6">                
           <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
           <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
-          <p class="grams" id="enUsageL">200 kwh</p>
+          <p id="enUsageL">200 kwh</p>
         </div> 
-      </form>  
+
     </div>         
     <div class="row">
       <div class="col-md-offset-2 col-md-6">
           <label class="control-label" for="enTerm">Długość umowy (miesiące)</label>   
-          <input type="range" id="enTerm" value="36" min="12" max="36" step="1" oninput="onSliderTermChanged()"><p class="grams" id="enTermL">36 miesięcy</p>     
+          <input type="range" id="enTerm" value="36" min="12" max="36" step="1" disabled>
+          <p class="grams" id="enTermL">36 miesięcy</p>
+<!--          <input type="range" id="enTerm" value="36" min="12" max="36" step="1" oninput="onSliderTermChanged()"><p class="grams" id="enTermL">36 miesięcy</p>    --> 
       </div> 
     </div> 
     <div class="row">
-        <div class="col-md-offset-2 col-md-4">
-          <h1>Oszczędność:</h1> 
+        <div class="col-md-offset-2 col-md-3">
+          <h1>Oszczędzisz:</h1> 
         </div>        
-        <div class="col-md-2">
+        <div class="col-md-3">
           <h1 id="ResultId">0</h1>
         </div>          
     </div>
+          </form>  
     <div class="row">
       <div class="col-md-offset-2 col-md-8">
         <p>Powyższe obliczenia dokonane są przy następujących założeniach</p>

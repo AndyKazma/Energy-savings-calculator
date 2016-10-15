@@ -71,12 +71,18 @@ var eTarrifs = {};
   	eTarrifs['ENERGA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
   	eTarrifs['RWE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C23', 'B21', 'B22', 'B23'];
 
-function ChangeCompanyList() {
+
+function changeCompanyList() {
     var companyList = document.getElementById("company");
     var tarrifList = document.getElementById("enTaryfa");
     var selCar = companyList.options[companyList.selectedIndex].value;
     while (tarrifList.options.length) {
         tarrifList.remove(0);
+// 	document.regForm.enBill.value = '0';
+        document.getElementById("enBill").disabled = true;
+    	document.getElementById("enUsage").disabled = true;
+    	document.getElementById("enTerm").disabled = true;
+  	    	
     }
     var tarrifs = eTarrifs[selCar];
     if (tarrifs) {
@@ -112,27 +118,41 @@ function getArray() {
 	return tarr;
 }
 
-function ChangeUsageBar() {
+function changeUsageBar() {
 
 	var tarrArr=getArray();
+	var termval = document.regForm.enTerm.value;
     document.getElementById("enBill").disabled = false;
-    document.getElementById("enUsage").disabled = false;	
+    document.getElementById("enUsage").disabled = false;
+    document.getElementById("enTerm").disabled = false; 	
 	document.getElementById("enUsage").setAttribute("min", tarrArr[0]);
 	document.getElementById("enUsage").setAttribute("max", tarrArr[1]);
-	document.getElementById("enUsageL").innerHTML= tarrArr[0] + " kwh";
+	document.getElementById("enUsage").setAttribute("value", tarrArr[0]);	
+	document.getElementById("enUsageL").innerHTML = tarrArr[0];
+// set the start bill value
+	billval = (tarrArr[2] * tarrArr[0] + tarrArr[3]);
+ 	document.regForm.enBill.value = billval.toFixed(2)+ " kwh";
+// set start savings value
+	savval = ((tarrArr[4] * tarrArr[0] + tarrArr[5])/100);
+	savval = savval*billval*termval;	
+	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";
 }
 
 function onSliderChanged() {
-
+	var trmval = document.getElementById("enTerm").value;
+	var usgval = document.getElementById("enUsage").value;
+	var bilval = document.getElementById("enBill").value;		
+	var tarrArr=getArray();	
+	savval = ((tarrArr[4] * usgval + tarrArr[5])/10);
+    totalResult = bilval*trmval*savval;
+	document.getElementById("ResultId").innerHTML= totalResult;   
 }
 
-function ChangeEnBill() {
+function changeEnBill() {
 
 }
 
 function onSliderTermChanged() {
-	var fval = document.getElementById("enTerm").value;
-
 	if (fval == 24 || fval == 23) {
 		document.getElementById("enTermL").innerHTML= fval + " miesiące";	
 	}
@@ -141,7 +161,7 @@ function onSliderTermChanged() {
 	}
 }
 
- document.regForm.enBill.oninput = function(){
+ document.regForm.enBill.oninput = function(){ // set bill value
 	var billval = document.regForm.enBill.value;
 	var tarrArr = getArray();
 	billval = (Math.round(((billval - tarrArr[3]) / tarrArr[2])/10)*10);
@@ -153,5 +173,22 @@ function onSliderTermChanged() {
 	var tarrArr = getArray();
 	billval = (tarrArr[2] * usageval + tarrArr[3]);
  	document.regForm.enBill.value = billval.toFixed(2);
-  	document.getElementById("enUsageL").innerHTML= usageval + " kwh";		
+  	document.getElementById("enUsageL").innerHTML= usageval + " kwh";
+// calculate savings
+ 	var termval = document.regForm.enTerm.value;
+	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
+	savval = savval*billval*termval;	
+	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
+
+ }
+
+ document.regForm.enTerm.oninput = function(){ // moving savings range
+ 	var termval = document.regForm.enTerm.value;
+	var usgval = document.getElementById("enUsage").value;
+	var bilval = document.getElementById("enBill").value; 	
+ 	document.getElementById("enTermL").innerHTML= termval + " miesięcy";
+ 	var tarrArr = getArray();
+	savval = ((tarrArr[4] * usgval + tarrArr[5])/100);
+	savval = savval*bilval*termval;	
+	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
  }
