@@ -114,28 +114,20 @@ function getArray() {
 
 function ChangeUsageBar() {
 
-var tarrArr=getArray();
+	var tarrArr=getArray();
+    document.getElementById("enBill").disabled = false;
+    document.getElementById("enUsage").disabled = false;	
 	document.getElementById("enUsage").setAttribute("min", tarrArr[0]);
 	document.getElementById("enUsage").setAttribute("max", tarrArr[1]);
+	document.getElementById("enUsageL").innerHTML= tarrArr[0] + " kwh";
 }
 
 function onSliderChanged() {
-	var pval = document.getElementById("enUsage").value;
-//	var fval = document.getElementById("enTerm").value;
-	
-	document.getElementById("enUsageL").innerHTML= pval + " kwh";
-// calculate an invoice amount enBill
-	var tarrArr=getArray();
-	var billValue = (tarrArr[2] * pval + tarrArr[3]);
-	document.getElementById("enBill").setAttribute("value", billValue.toFixed(2));
+
 }
 
 function ChangeEnBill() {
-	var bval = document.getElementById("enBill").value;
-	var tarrArr = getArray();
-	var uval = (Math.round(((bval - tarrArr[3]) / tarrArr[2])/10)*10);
-   alert(uval);
-	document.getElementById("enUsage").setAttribute("value", uval);
+
 }
 
 function onSliderTermChanged() {
@@ -151,10 +143,15 @@ function onSliderTermChanged() {
 
  document.regForm.enBill.oninput = function(){
 	var billval = document.regForm.enBill.value;
-	document.regForm.enUsage.value = billval;
+	var tarrArr = getArray();
+	billval = (Math.round(((billval - tarrArr[3]) / tarrArr[2])/10)*10);
+	document.regForm.enUsage.value = billval.toFixed(2);
+  	document.getElementById("enUsageL").innerHTML= billval + " kwh";	
  }
- document.regForm.enUsage.oninput = function(){
+ document.regForm.enUsage.oninput = function(){ // moving range
  	var usageval = document.regForm.enUsage.value;
- 	document.regForm.enBill.value = usageval;
- 	document.getElementById("enUsageL").innerHTML= usageval + " kwh";
+	var tarrArr = getArray();
+	billval = (tarrArr[2] * usageval + tarrArr[3]);
+ 	document.regForm.enBill.value = billval.toFixed(2);
+  	document.getElementById("enUsageL").innerHTML= usageval + " kwh";		
  }

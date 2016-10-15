@@ -11,7 +11,6 @@
 </head>
 <body>
   <div class="container">
-
     <div class="row head">
       <div class="col-md-offset-3 col-md-6">
         <h2>Kalkulator Oszczędności</h2>
@@ -28,7 +27,7 @@
           <option value="PGE">PGE</option>
           <option value="TAURON">TAURON</option>
         </select>
-      </div>
+      </div>     
       <div class="col-md-3">
         <label class="control-label" for="enTaryfa">Wybierz taryfę</label>         
         <select id="enTaryfa" class="form-control" onchange="ChangeUsageBar()">
@@ -37,54 +36,31 @@
       </div>
     </div>  
     <div class="row">
-         <form name="regForm">     
-      <div class="col-md-offset-2 col-md-6">
-
+      <form name="regForm">
+        <div class="col-md-offset-2 col-md-6">
           <label class="control-label" for="enBill">Podaj kwotę rachunku (1 miesiąc w pln)</label>
-          <input type="number" id="enBill" class="form-control" min="0" max="100" value="0" /><br>
-      </div>
-      <div class="col-md-offset-2 col-md-6">                
+          <input type="number" id="enBill" class="form-control" min="140" max="60000" value="0" disabled /><br>
+        </div>
+    </div>    
+    <div class="row">        
+        <div class="col-md-offset-2 col-md-6">                
           <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
-          <input type="range" id="enUsage" min="200" max="1200" value="0" />
+          <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
           <p class="grams" id="enUsageL">200 kwh</p>
-          
- <!--           <label class="control-label" for="enBill">Podaj kwotę rachunku (1 miesiąc w pln)</label>
-          <input type="number" id="enBill" class="form-control" min="0" max="100" step="10" value="" onchange="ChangeEnBill()"> -->
-
-      </div>
-         </form>      
-    </div>  
- <!--    <div class="row">
-      <div class="usBar col-md-offset-2 col-md-6">
-        <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>   
-       <input type="range" id="enUsage" value="" min="200" max="1200" step="10" onchange="onSliderChanged()"><p class="grams" id="enUsageL">200 kwh</p>
-
-lub
-         <form>     
-      <div class="col-md-offset-2 col-md-6">
-
-          <label class="control-label" for="enBill">Podaj kwotę rachunku (1 miesiąc w pln)</label>
-          <input type="number" id="enBill" class="form-control" name="amountInput" min="0" max="100" value="0" oninput="this.form.amountRange.value=this.value" /><br>
-      </div>
-      <div class="col-md-offset-2 col-md-6">                
-          <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
-          <input type="range" id="enUsage" name="amountRange" min="0" max="100" value="0" oninput="this.form.amountInput.value=this.value; enUsageL.value = amountRange.value" />
-
-      </div>             
-    </div>   -->  
+        </div> 
+      </form>  
+    </div>         
     <div class="row">
       <div class="col-md-offset-2 col-md-6">
-
           <label class="control-label" for="enTerm">Długość umowy (miesiące)</label>   
           <input type="range" id="enTerm" value="36" min="12" max="36" step="1" oninput="onSliderTermChanged()"><p class="grams" id="enTermL">36 miesięcy</p>     
- 
       </div> 
     </div> 
     <div class="row">
         <div class="col-md-offset-2 col-md-4">
           <h1>Oszczędność:</h1> 
         </div>        
-        <div class="col-md-4">
+        <div class="col-md-2">
           <h1 id="ResultId">0</h1>
         </div>          
     </div>
@@ -93,7 +69,7 @@ lub
         <p>Powyższe obliczenia dokonane są przy następujących założeniach</p>
         <ul>
           <li>Do obliczeń przyjęto cenniki standardowe (2016) firm Enea, Energa, PGE, Tauron, Innogy RWE</li>
-          <li>Przyjęto moc umowną w wysokości</li>
+          <li>Przyjęto moc umowną uśrednioną dla pszczególnych taryf</li>
         </ul>   
       </div>
     </div>
