@@ -5,20 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="container">
     <div class="row head">
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-12">
         <h2>Kalkulator Oszczędności</h2>
       </div>  
     </div>
     <div class="row">    
-      <div class="col-md-offset-2 col-md-3">
-        <label class="control-label" for="company">Wybierz firmę która dostarcza Ci prąd</label> 
+      <div class="col-md-offset-1 col-md-5">
+        <label class="control-label" for="company">Wybierz swojego dostawcę prądu</label> 
         <select id="company" class="form-control" onchange="changeCompanyList()">
           <option value="">Wybierz swojego sprzedawcę</option>
           <option value="ENEA">ENEA</option>
@@ -28,7 +28,7 @@
           <option value="TAURON">TAURON</option>
         </select>
       </div>     
-      <div class="col-md-3">
+      <div class="col-md-5">
         <label class="control-label" for="enTaryfa">Wybierz taryfę</label>         
         <select id="enTaryfa" class="form-control" onchange="changeUsageBar()">
           <option selected="selected">Wybierz taryfę</option> 
@@ -37,13 +37,13 @@
     </div>  
     <div class="row">
       <form name="regForm">
-        <div class="col-md-offset-2 col-md-6">
+        <div class="col-md-offset-1 col-md-10">
           <label class="control-label" for="enBill">Podaj kwotę rachunku netto (1 miesiąc w pln)</label>
           <input type="number" id="enBill" class="form-control" min="140" max="60000" value="0" disabled /><br>
         </div>
     </div>    
     <div class="row">        
-        <div class="col-md-offset-2 col-md-6">                
+        <div class="col-md-offset-1 col-md-10">                
           <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
           <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
           <p  class="grams" id="enUsageL">0 kwh</p>
@@ -51,7 +51,7 @@
 
     </div>         
     <div class="row">
-      <div class="col-md-offset-2 col-md-6">
+      <div class="col-md-offset-1 col-md-10">
           <label class="control-label" for="enTerm">Długość umowy (miesiące)</label>   
           <input type="range" id="enTerm" value="36" min="12" max="36" step="1" disabled>
           <p class="grams" id="enTermL">36 miesięcy</p>
@@ -59,16 +59,16 @@
       </div> 
     </div> 
     <div class="row">
-        <div class="col-md-offset-2 col-md-3">
+        <div class="col-md-offset-1 col-md-4">
           <h1>Oszczędzisz:</h1> 
         </div>        
-        <div class="col-md-3">
+        <div class="col-md-4">
           <h1 id="ResultId">0</h1>
         </div>          
     </div>
           </form>  
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-1 col-md-10">
         <p>Powyższe obliczenia dokonane są przy następujących założeniach</p>
         <ul>
           <li>Do obliczeń przyjęto cenniki standardowe (2016) firm Enea, Energa, PGE, Tauron, Innogy RWE</li>
