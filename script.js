@@ -167,6 +167,13 @@ function onSliderTermChanged() {
 	billval = (Math.round(((billval - tarrArr[3]) / tarrArr[2])/10)*10);
 	document.regForm.enUsage.value = billval.toFixed(2);
   	document.getElementById("enUsageL").innerHTML= billval + " kwh";	
+ // calculate savings
+ 	var usageval = document.regForm.enUsage.value;
+ 	var termval = document.regForm.enTerm.value;
+	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
+	savval = savval*billval*termval;	
+	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
+
  }
  document.regForm.enUsage.oninput = function(){ // moving range
  	var usageval = document.regForm.enUsage.value;
