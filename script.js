@@ -68,7 +68,7 @@ var eTarrifs = {};
   	eTarrifs['PGE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12n', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
   	eTarrifs['TAURON'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C13', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
   	eTarrifs['ENEA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C22w', 'B11', 'B12', 'B21', 'B22', 'B23'];
-  	eTarrifs['ENERGA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
+  	eTarrifs['ENERGA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B22', 'B23'];
   	eTarrifs['RWE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C23', 'B21', 'B22', 'B23'];
 
 
@@ -78,7 +78,7 @@ function changeCompanyList() {
     var selCar = companyList.options[companyList.selectedIndex].value;
     while (tarrifList.options.length) {
         tarrifList.remove(0);
-// 	document.regForm.enBill.value = '0';
+ 	document.regForm.enBill.value = '0'; 		
         document.getElementById("enBill").disabled = true;
     	document.getElementById("enUsage").disabled = true;
     	document.getElementById("enTerm").disabled = true;
@@ -118,7 +118,7 @@ function getArray() {
 	return tarr;
 }
 
-function changeUsageBar() {
+function changeTariff() {
 
 	var tarrArr=getArray();
 	var termval = document.regForm.enTerm.value;
@@ -127,14 +127,16 @@ function changeUsageBar() {
     document.getElementById("enTerm").disabled = false; 	
 	document.getElementById("enUsage").setAttribute("min", tarrArr[0]);
 	document.getElementById("enUsage").setAttribute("max", tarrArr[1]);
-	document.getElementById("enUsage").setAttribute("value", tarrArr[0]);	
-	document.getElementById("enUsageL").innerHTML = tarrArr[0];
+	document.getElementById("enUsage").setAttribute("value", tarrArr[0]);
+	document.getElementById("enUsage").innerHTML = 0;		
+	document.getElementById("enUsageL").innerHTML = tarrArr[0] + " kwh";
 // set the start bill value
 	billval = (tarrArr[2] * tarrArr[0] + tarrArr[3]);
- 	document.regForm.enBill.value = billval.toFixed(2)+ " kwh";
+ 	document.regForm.enBill.value = billval.toFixed(2);
+ 	document.getElementById("enBill").innerHTML = billval.toFixed(2);
 // set start savings value
 	savval = ((tarrArr[4] * tarrArr[0] + tarrArr[5])/100);
-	savval = savval*billval*termval;	
+	savval = savval*billval*termval*0.94;	
 	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";
 }
 
@@ -144,12 +146,8 @@ function onSliderChanged() {
 	var bilval = document.getElementById("enBill").value;		
 	var tarrArr=getArray();	
 	savval = ((tarrArr[4] * usgval + tarrArr[5])/10);
-    totalResult = bilval*trmval*savval;
+    totalResult = bilval*trmval*savval*0.94;
 	document.getElementById("ResultId").innerHTML= totalResult;   
-}
-
-function changeEnBill() {
-
 }
 
 function onSliderTermChanged() {
@@ -166,12 +164,13 @@ function onSliderTermChanged() {
 	var tarrArr = getArray();
 	billval = (Math.round(((billval - tarrArr[3]) / tarrArr[2])/10)*10);
 	document.regForm.enUsage.value = billval.toFixed(2);
-  	document.getElementById("enUsageL").innerHTML= billval + " kwh";	
+  	document.getElementById("enUsageL").innerHTML= billval + " kwh";
+
  // calculate savings
  	var usageval = document.regForm.enUsage.value;
  	var termval = document.regForm.enTerm.value;
 	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
-	savval = savval*billval*termval;	
+	savval = savval*billval*termval*0.94;	
 	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
 
  }
@@ -184,7 +183,7 @@ function onSliderTermChanged() {
 // calculate savings
  	var termval = document.regForm.enTerm.value;
 	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
-	savval = savval*billval*termval;	
+	savval = savval*billval*termval*0.94;	
 	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
 
  }
@@ -196,6 +195,19 @@ function onSliderTermChanged() {
  	document.getElementById("enTermL").innerHTML= termval + " miesięcy";
  	var tarrArr = getArray();
 	savval = ((tarrArr[4] * usgval + tarrArr[5])/100);
-	savval = savval*bilval*termval;	
+	savval = savval*bilval*termval*0.94;	
 	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
  }
+
+ function validateMyForm()
+{
+  if(document.getElementById("enBill").value > 180)
+  { 
+//    alert("validation failed false");
+//    returnToPreviousPage();
+    return false;
+  }
+
+//  alert("validations passed");
+//  return true;
+}

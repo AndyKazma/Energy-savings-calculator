@@ -19,7 +19,7 @@
     </div>
     <div class="row">    
       <div class="col-md-offset-1 col-md-5">
-        <label class="control-label" for="company">Wybierz swojego dostawcę prądu</label> 
+        <label class="control-label" for="company">1. Wybierz swojego dostawcę prądu</label> 
         <select id="company" class="form-control" onchange="changeCompanyList()">
           <option value="">Wybierz swojego sprzedawcę</option>
           <option value="ENEA">ENEA</option>
@@ -30,22 +30,22 @@
         </select>
       </div>     
       <div class="col-md-5">
-        <label class="control-label" for="enTaryfa">Wybierz taryfę</label>         
-        <select id="enTaryfa" class="form-control" onchange="changeUsageBar()">
+        <label class="control-label" for="enTaryfa">2. Wybierz taryfę</label>         
+        <select id="enTaryfa" class="form-control" onchange="changeTariff()">
           <option selected="selected">Wybierz taryfę</option> 
         </select>
       </div>
     </div>  
     <div class="row">
-      <form name="regForm">
+      <form name="regForm" onsubmit="return validateMyForm();">
         <div class="col-md-offset-1 col-md-10">
-          <label class="control-label" for="enBill">Podaj kwotę rachunku netto (1 miesiąc w pln)</label>
+          <label class="control-label" for="enBill">3. Podaj kwotę rachunku netto (1 miesiąc w pln) powyżej kwoty minimalnej wyświetlonej poniżej</label>
           <input type="number" id="enBill" class="form-control" min="140" max="60000" value="0" disabled /><br>
         </div>
     </div>    
     <div class="row">        
         <div class="col-md-offset-1 col-md-10">                
-          <label class="control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
+          <label class="labelenUsage control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
           <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
           <p  class="grams" id="enUsageL">0 kwh</p>
         </div> 
@@ -53,21 +53,25 @@
     </div>         
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
-          <label class="control-label" for="enTerm">Długość umowy (miesiące)</label>   
+          <label class="control-label" for="enTerm">4. Długość umowy (miesiące)</label>   
           <input type="range" id="enTerm" value="36" min="12" max="36" step="1" disabled>
           <p class="grams" id="enTermL">36 miesięcy</p>
-<!--          <input type="range" id="enTerm" value="36" min="12" max="36" step="1" oninput="onSliderTermChanged()"><p class="grams" id="enTermL">36 miesięcy</p>    --> 
       </div> 
     </div> 
     <div class="row">
         <div class="col-md-offset-1 col-md-4">
-          <h1>Oszczędzisz:</h1> 
+          <h1>Wydasz mniej o:</h1> 
         </div>        
-        <div class="col-md-4">
+        <div class="col-md-3">
           <h1 id="ResultId">0</h1>
         </div>          
     </div>
-          </form>  
+          </form>
+    <div class="row">
+      <a href="mailto:oferta@parsymonia.pl"><div class="col-md-offset-2 col-md-8">
+        <button class="btn btn-primary btn-outline btn-lg">Wystaczy wysłać email z bieżącą fakturą. My odeślemy projekt umowy.<br>NIC więcej nie musisz robić!</button>
+      </div></a>          
+    </div>            
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
         <p>Powyższe obliczenia dokonane są przy następujących założeniach</p>
@@ -79,10 +83,12 @@
             <li>szczyt - 40% / pozaszczyt - 60%</li>
             <li>szczyt przed - 30% / szczyt po - 10% / pozostałe - 60%</li>
           </ul>
-        </ul>   
+        </ul>
+        <br>
+        <p>* Podane kwoty są kwotami netto. Przedstawiona oferta ma charakter informacyjny, nie stanowi oferty handlowej w rozumieniu Art.66 par.1 Kodeksu Cywilnego</p>
+        <p>* W przypadku wysłania zapytania wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w przesłanym e-mailu w celu otrzymania odpowiedzi na zapytanie za pośrednictwem poczty elektronicznej, telefonu lub SMS.</p> 
       </div>
     </div>
-
   </div>  
   <script type="text/javascript" src="script.js"></script> 
 </body>
