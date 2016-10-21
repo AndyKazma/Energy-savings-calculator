@@ -1,5 +1,4 @@
 .container {
-	border: 2px solid;
   max-width: 1000px;
 }
 .head {
@@ -36,6 +35,9 @@ h1 {
     background-color: #E4005C !important;
     border-color: #E4005C !important;
    }
+span {
+    font: 1em italic;
+}
 /* element rangeUI */
 input[type=range] {
   -webkit-appearance: none;
