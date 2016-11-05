@@ -4,9 +4,9 @@
   <title>Kalkulator oszczędności</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-<!--   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -44,36 +44,35 @@
         </div>
     </div>    
     <div class="row">        
-        <div class="col-md-offset-1 col-md-10">                
-          <label class="labelenUsage control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
-          <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
-          <p  class="grams" id="enUsageL">0 kwh</p>
-        </div> 
-
+      <div class="col-md-offset-1 col-md-10">                
+        <label class="labelenUsage control-label" for="enUsage">lub ustaw łączne zużycie miesięczne w kwh</label>
+        <input type="range" id="enUsage" min="200" max="1200" value="0" disabled/>
+        <p  class="rangeLabel" id="enUsageL">0 kwh</p>
+      </div> 
     </div>         
     <div class="row">
       <div class="col-md-offset-1 col-md-10">
-          <label class="control-label" for="enTerm">4. Długość umowy (miesiące)</label>   
-          <input type="range" id="enTerm" value="36" min="12" max="36" step="1" disabled>
-          <p class="grams" id="enTermL">36 miesięcy</p>
+        <label class="control-label" for="enTerm">4. Długość umowy (miesiące)</label>   
+        <input type="range" id="enTerm" value="36" min="12" max="36" step="1" disabled>
+        <p class="rangeLabel" id="enTermL">36 miesięcy</p>
       </div> 
     </div> 
     <div class="row">
-        <div class="col-md-offset-1 col-md-5">
-          <h1>Możesz wydać mniej o:</h1> 
-        </div>        
-        <div class="col-md-3">
-          <h1 id="ResultId">0</h1>
-        </div>          
+      <div class="col-md-offset-2 col-md-8">
+        <h1 id="ResultId" class="cmn-t-pulse">0</h1>
+      </div>          
     </div>
-          </form>
+    <div class="row"> 
+      <div class="col-md-offset-2 col-md-8">
+        <a href="mailto:oferta@parsymonia.pl" id="mailButton">
+          <h4>Wystaczy wysłać email z bieżącą fakturą. My odeślemy Ci projekt umowy.</h4>
+          <h4>NIC WIĘCEJ NIE MUSISZ ROBIĆ!</h4>
+        </a>
+      </div>     
+    </div> 
+      </form>
     <div class="row">
-      <a href="mailto:oferta@parsymonia.pl"><div class="col-md-offset-2 col-md-8">
-        <button class="btn btn-primary btn-outline btn-lg">Wystaczy wysłać email z bieżącą fakturą. My odeślemy projekt umowy.<br>NIC więcej nie musisz robić!</button>
-      </div></a>          
-    </div>            
-    <div class="row">
-      <div class="col-md-offset-1 col-md-10">
+      <div class="col-md-offset-1 col-md-10 footNote">
         <p>Powyższe obliczenia dokonane są przy następujących założeniach</p>
         <ul>
           <li>Do obliczeń przyjęto cenniki standardowe (2016) firm Enea, Energa, PGE, Tauron, Innogy RWE</li>

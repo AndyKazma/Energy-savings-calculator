@@ -2,7 +2,7 @@
 // usage bill conversion
 var ENEA = {}; 
   ENEA['C22b'] = [1000,6000,0.555083,533.5181,0.000055,11.3663];
-  ENEA['B11'] = [1000,6000,0.612323,533.5181,0.000551,15.5051];
+  ENEA['C22a'] = [1000,6000,0.612323,533.5181,0.000551,15.5051];
   ENEA['C21'] = [500,3000,0.692976,533.5181,0.00075,12.7122];
   ENEA['C12b'] = [500,3000,0.537511,57.9208,-0.000794,12.5351];
   ENEA['C12a'] = [500,3000,0.584151,57.9208,-0.000447,17.6844];
@@ -60,75 +60,85 @@ var TAURON = {};
   TAURON['B22'] = [10000,60000,0.475494,2420.8983,0.000029,12.3394];
   TAURON['B11'] = [18000,108000,0.434703,1316.6475,0.000001,14.9915];
 
-// alert(usageL);
-
-// dropdown 
-
+// dropdown tarrifs
 var eTarrifs = {};
-  	eTarrifs['PGE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12n', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
-  	eTarrifs['TAURON'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C13', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
-  	eTarrifs['ENEA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C22w', 'B11', 'B12', 'B21', 'B22', 'B23'];
-  	eTarrifs['ENERGA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B22', 'B23'];
-  	eTarrifs['RWE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C23', 'B21', 'B22', 'B23'];
-
+  eTarrifs['PGE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12n', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B21', 'B22', 'B23'];
+  eTarrifs['TAURON'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'B11', 'B22', 'B23'];
+  eTarrifs['ENEA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'B11', 'B22', 'B23'];
+  eTarrifs['ENERGA'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C12w', 'C21', 'C22a', 'C22b', 'C23', 'B11', 'B22', 'B23'];
+  eTarrifs['RWE'] = ['Wybierz', 'C11', 'C12a', 'C12b', 'C21', 'C22a', 'C22b', 'C23', 'B22', 'B23'];
 
 function changeCompanyList() {
-    var companyList = document.getElementById("company");
-    var tarrifList = document.getElementById("enTaryfa");
-    var selCar = companyList.options[companyList.selectedIndex].value;
+  var companyList = document.getElementById("company");
+  var tarrifList = document.getElementById("enTaryfa");
+  var selTarif = companyList.options[companyList.selectedIndex].value;
     while (tarrifList.options.length) {
-        tarrifList.remove(0);
- 	document.regForm.enBill.value = '0'; 		
-        document.getElementById("enBill").disabled = true;
+      tarrifList.remove(0);
+ 	    document.regForm.enBill.value = '0'; 		
+      document.getElementById("enBill").disabled = true;
     	document.getElementById("enUsage").disabled = true;
-    	document.getElementById("enTerm").disabled = true;
-  	    	
+    	document.getElementById("enTerm").disabled = true;  	    	
     }
-    var tarrifs = eTarrifs[selCar];
+    var tarrifs = eTarrifs[selTarif];
     if (tarrifs) {
-        var i;
-        for (i = 0; i < tarrifs.length; i++) {
-            var company = new Option(tarrifs[i], tarrifs[i]);
-            tarrifList.options.add(company);
-        }
+      var i;
+      for (i = 0; i < tarrifs.length; i++) {
+        var company = new Option(tarrifs[i], tarrifs[i]);
+        tarrifList.options.add(company);
+      }
     }
 }
 
 function getArray() {
-    var companyList = document.getElementById("company").value;    
-    var tarrifList = document.getElementById("enTaryfa").value;
+  var companyList = document.getElementById("company").value;    
+  var tarrifList = document.getElementById("enTaryfa").value;
 	switch (companyList) {
-	  	case 'ENEA': 
-	        var tarr = ENEA[tarrifList];
-	        break;
-	    case 'ENERGA':
-	        var tarr = ENERGA[tarrifList];
-	        break;
-	    case 'PGE':
-	        var tarr = PGE[tarrifList];
-	        break;
-	    case 'RWE':
-	        var tarr = RWE[tarrifList];
-	        break;
-	    case 'TAURON':
-	        var tarr = TAURON[tarrifList];
-	        break;
-	   default:
+	 	case 'ENEA': 
+	    var tarr = ENEA[tarrifList];
+	    break;
+	  case 'ENERGA':
+	    var tarr = ENERGA[tarrifList];
+	    break;
+	  case 'PGE':
+	    var tarr = PGE[tarrifList];
+	    break;
+	  case 'RWE':
+	    var tarr = RWE[tarrifList];
+	    break;
+	  case 'TAURON':
+	    var tarr = TAURON[tarrifList];
+	    break;
+	    default:
 	}
 	return tarr;
 }
 
-function changeTariff() {
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
 
-	var tarrArr=getArray();
-	var termval = document.regForm.enTerm.value;
-    document.getElementById("enBill").disabled = false;
-    document.getElementById("enUsage").disabled = false;
-    document.getElementById("enTerm").disabled = false; 	
+function calculateSavings(savval) {
+
+  document.getElementById("ResultId").innerHTML= "Możesz wydać mniej o: " + savval.formatMoney(2, '.', ',') + " pln"; 
+}
+
+function changeTariff() {
+ var tarrArr = getArray();
+  var termval = document.regForm.enTerm.value;
+// enable controls
+  document.getElementById("enBill").disabled = false;
+  document.getElementById("enUsage").disabled = false;
+  document.getElementById("enTerm").disabled = false; 	
 	document.getElementById("enUsage").setAttribute("min", tarrArr[0]);
 	document.getElementById("enUsage").setAttribute("max", tarrArr[1]);
 	document.getElementById("enUsage").setAttribute("value", tarrArr[0]);
-	document.getElementById("enUsage").innerHTML = 0;		
 	document.getElementById("enUsageL").innerHTML = tarrArr[0] + " kwh";
 // set the start bill value
 	billval = (tarrArr[2] * tarrArr[0] + tarrArr[3]);
@@ -137,17 +147,11 @@ function changeTariff() {
 // set start savings value
 	savval = ((tarrArr[4] * tarrArr[0] + tarrArr[5])/100);
 	savval = savval*billval*termval*0.94;	
-	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";
-}
 
-function onSliderChanged() {
-	var trmval = document.getElementById("enTerm").value;
-	var usgval = document.getElementById("enUsage").value;
-	var bilval = document.getElementById("enBill").value;		
-	var tarrArr=getArray();	
-	savval = ((tarrArr[4] * usgval + tarrArr[5])/10);
-    totalResult = bilval*trmval*savval*0.94;
-	document.getElementById("ResultId").innerHTML= totalResult;   
+  calculateSavings(savval)
+// visual effects  
+  document.getElementById("ResultId").style.opacity = 1;
+  document.getElementById("mailButton").style.visibility = "visible";
 }
 
 function onSliderTermChanged() {
@@ -171,7 +175,8 @@ function onSliderTermChanged() {
  	var termval = document.regForm.enTerm.value;
 	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
 	savval = savval*billval*termval*0.94;	
-	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
+	calculateSavings(savval)
+  //document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
 
  }
  document.regForm.enUsage.oninput = function(){ // moving range
@@ -184,8 +189,8 @@ function onSliderTermChanged() {
  	var termval = document.regForm.enTerm.value;
 	savval = ((tarrArr[4] * usageval + tarrArr[5])/100);
 	savval = savval*billval*termval*0.94;	
-	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
-
+//	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
+calculateSavings(savval)
  }
 
  document.regForm.enTerm.oninput = function(){ // moving savings range
@@ -195,8 +200,10 @@ function onSliderTermChanged() {
  	document.getElementById("enTermL").innerHTML= termval + " miesięcy";
  	var tarrArr = getArray();
 	savval = ((tarrArr[4] * usgval + tarrArr[5])/100);
-	savval = savval*bilval*termval*0.94;	
-	document.getElementById("ResultId").innerHTML= savval.toFixed(2) + " pln";	
+	savval = savval*bilval*termval*0.94;
+
+calculateSavings(savval)
+//	document.getElementById("ResultId").innerHTML= "Możesz wydać mniej o: " + savval.toFixed(2) + " pln";	
  }
 
  function validateMyForm()

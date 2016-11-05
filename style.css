@@ -4,40 +4,43 @@
 .head {
 	text-align: center;
 	margin: 2em 0;
+  margin-top: 0;
 }
 .row {
 	padding: 10px
 }
-.grams{
-	font: 1.6em bold;
+.rangeLabel{
+  font: 1.6em bold;
 	color: #98003D;
 	text-align: center;
 }
 h1 {
-	text-align: center;
+  text-align: center;
 }
 #ResultId {
-  color: green;
-  transition: background-color 0.8s ease;
+  color: #E4005C;
+  opacity: 0.2;
 }
-#ResultId:hover {
+#mailButton {
+  display: block;
+  visibility: hidden;
+  padding: 20px 40px;
+  text-align: center;
+  color: #E4005C;
+  border: 2px solid #E4005C;
+  border-radius: 6px;
+}
+#mailButton:hover {
+  color: #fff; 
+  text-decoration: none;
   background-color: #EB5A95;
-  color: white;
-  border-radius: 5px;
-  transition: 
+  transition: color 500ms linear;
+  transition: background-color 500ms ease-in;
 }
-.btn-primary {
-    background-color: #EB5A95 !important;
-    border-color: #E4005C !important;
-    margin: 0 auto;
-   }
-.btn-primary:hover {
-    background-color: #E4005C !important;
-    border-color: #E4005C !important;
-   }
-span {
-    font: 1em italic;
+.footNote{
+  padding: 40px 0;
 }
+
 /* element rangeUI */
 input[type=range] {
   -webkit-appearance: none;
@@ -124,3 +127,37 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: rgba(255, 80, 152, 0.8);
 }
+.form-control:focus {
+  border-color: #C2004E;
+  background-color: rgba(235,95,149,0.03);
+  box-shadow: -1px -1px 2px 1px rgba(228,0,92,0.2);
+}
+.inLineH {
+	display: inline-block;
+}
+
+/* pulse */
+.cmn-t-pulse {
+  padding: 20px 40px;
+  border: 2px solid;
+  border-radius: 6px;
+  animation: pulse 1.4s ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1);
+    border-color: rgba(235,95,149,0.03);
+    box-shadow: 0 0 3pt 4pt rgba(228,0,92,0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
