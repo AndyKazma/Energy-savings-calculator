@@ -21,6 +21,11 @@ h1 {
   color: #E4005C;
   opacity: 0.2;
 }
+#ResultIdCom {
+  font-size: 1.6em;
+  color: #E4005C;
+  opacity: 1;
+}
 #mailButton {
   display: block;
   visibility: hidden;
